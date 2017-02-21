@@ -165,7 +165,7 @@ public class MapFragment extends SupportMapFragment implements
     }
 
     private void setCurrentLocation() {
-        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+       /* Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (location == null) {
             handleNewLocation(location);
         } else {
@@ -173,7 +173,10 @@ public class MapFragment extends SupportMapFragment implements
             Toast.makeText(getActivity(), mCurrentLocation.getLatitude() + " " + mCurrentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
             Log.i(TAG," setCurrent "+mCurrentLocation.getLatitude() + " " + mCurrentLocation.getLongitude());
             initCamera();
-        }
+        }*/
+
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,mLocationRequest,this);
+
 
     }
 
