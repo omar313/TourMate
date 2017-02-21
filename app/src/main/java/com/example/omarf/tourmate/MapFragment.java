@@ -186,7 +186,7 @@ public class MapFragment extends SupportMapFragment implements
         }
         else {
             mCurrentLocation=location;
-            Toast.makeText(getActivity(), mCurrentLocation.getLatitude() + " " + mCurrentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getActivity(), mCurrentLocation.getLatitude() + " " + mCurrentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
             Log.i(TAG," handle "+mCurrentLocation.getLatitude() + " " + mCurrentLocation.getLongitude());
 
             initCamera();
@@ -194,13 +194,14 @@ public class MapFragment extends SupportMapFragment implements
     }
 
     private void initCamera() {
-       /* CameraPosition cameraPosition=CameraPosition.builder()
+        CameraPosition cameraPosition=CameraPosition.builder()
+                .target(new LatLng(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude()))
                 .zoom(16f)
                 .bearing(0f)
                 .tilt(0f)
-                .build();*/
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude())));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(16f));
+                .build();
+       // mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude())));
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
